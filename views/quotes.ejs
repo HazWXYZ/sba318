@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Quotes</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <nav>
+    <h1>Quote Collection</h1>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/quotes">Browse Quotes</a></li>
+      <li><a href="/add-quote">Add Quote</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h2>All Quotes</h2>
+    
+    <div class="filters">
+      <h3>Filter by:</h3>
+      <div class="filter-buttons">
+        <a href="/quotes" class="filter-btn <%= !selectedCategory && !selectedAuthor ? 'active' : '' %>">All Quotes</a>
+        
+        <div class="filter-group">
+          <strong>Category:</strong>
+          <% categories.forEach(category => { %>
+            <a href="/quotes?categoryId=<%= category.id %>" 
+               class="filter-btn <%= selectedCategory == category.id ? 'active' : '' %>">
+              <%= category.name %>
+            </a>
+          <% }) %>
+        </div>
+
+        <div class="filter-group">
+          <strong>Author:</strong>
+          <% authors.forEach(author => { %>
+            <a href="/quotes?authorId=<%= author.id %>" 
+               class="filter-btn <%= selectedAuthor == author.id ? 'active' : '' %>">
+              <%= author.name %>
+            </a>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+
+    <div class="quotes-grid">
+      <% if (quotes.length === 0) { %>
+        <p class="no-data">No quotes found. <a href="/add-quote">Add the first quote!</a></p>
+      <% } else { %>
+        <% quotes.forEach(quote => { %>
+          <% const author = authors.find(a => a.id === quote.authorId) %>
+          <% const category = categories.find(c => c.id === quote.categoryId) %>
+          <div class="quote-card">
+            <div class="quote-content">
+              <p class="quote-text">"<%= quote.text %>"</p>
+            </div>
+            <div class="quote-footer">
+              <p class="quote-author">— <%= author ? author.name : 'Unknown' %></p>
+              <div class="quote-meta">
+                <span class="category-badge"><%= category ? category.name : 'Uncategorized' %></span>
+                <% if (quote.year) { %>
+                  <span class="year-badge"><%= quote.year %></span>
+                <% } %>
+                <span class="likes">❤️ <%= quote.likes %></span>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
+  </div>
+
+  <footer>
+    <p>SBA 318 - Express Server Application | Quote Collection</p>
+  </footer>
+</body>
+</html>

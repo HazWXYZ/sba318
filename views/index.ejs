@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quote Collection - Home</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <nav>
+    <h1>Quote Collection</h1>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/quotes">Browse Quotes</a></li>
+      <li><a href="/add-quote">Add Quote</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="hero">
+      <h2>Welcome to Quote Collection</h2>
+      <p class="tagline">Discover wisdom from the greatest minds</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <h3><%= quotes.length %></h3>
+        <p>Inspiring Quotes</p>
+      </div>
+      <div class="stat-card">
+        <h3><%= authors.length %></h3>
+        <p>Famous Authors</p>
+      </div>
+      <div class="stat-card">
+        <h3><%= categories.length %></h3>
+        <p>Categories</p>
+      </div>
+    </div>
+
+    <div class="featured-section">
+      <h3>📌 Featured Quote of the Day</h3>
+      <% const randomQuote = quotes[Math.floor(Math.random() * quotes.length)] %>
+      <% const quoteAuthor = authors.find(a => a.id === randomQuote.authorId) %>
+      <div class="featured-quote">
+        <p class="quote-text">"<%= randomQuote.text %>"</p>
+        <p class="quote-author">— <%= quoteAuthor ? quoteAuthor.name : 'Unknown' %></p>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h3>Browse by Category</h3>
+      <div class="category-list">
+        <% categories.forEach(category => { %>
+          <a href="/quotes?categoryId=<%= category.id %>" class="category-tag">
+            <%= category.name %>
+          </a>
+        <% }) %>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h3>🔗 Quick API Links</h3>
+      <ul class="quick-links">
+        <li><a href="/api/quotes">View All Quotes (JSON)</a></li>
+        <li><a href="/api/authors">View All Authors (JSON)</a></li>
+        <li><a href="/api/categories">View All Categories (JSON)</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <p>SBA 318 - Express Server Application | Quote Collection</p>
+  </footer>
+</body>
+</html>

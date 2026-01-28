@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error - Quote Collection</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <nav>
+    <h1>Quote Collection</h1>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/quotes">Browse Quotes</a></li>
+      <li><a href="/add-quote">Add Quote</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="error-container">
+      <h1>Error <%= status %></h1>
+      <p class="error-message"><%= error %></p>
+      <a href="/" class="btn-primary">Go Back Home</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>SBA 318 - Express Server Application | Quote Collection</p>
+  </footer>
+</body>
+</html>
