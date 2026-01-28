@@ -9,7 +9,7 @@ body {
   font-family: 'Georgia', 'Times New Roman', serif;
   line-height: 1.6;
   color: #333;
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, #ca47d8 0%, #ba4151 100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
